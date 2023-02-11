@@ -1,0 +1,28 @@
+{
+  "name": "project-ema",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tomnyson/ema-es6-spring-2023.git"
+  },
+  "author": "tomnyson <tabletkindfire@gmail.com>",
+  "license": "MIT",
+  "targets": {
+    "main": false
+  },
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "watch": "parcel watch"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  },
+  "description": "npm install -g json-server",
+  "bugs": {
+    "url": "https://github.com/tomnyson/ema-es6-spring-2023/issues"
+  },
+  "homepage": "https://github.com/tomnyson/ema-es6-spring-2023#readme"
+}

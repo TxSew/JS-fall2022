@@ -1,0 +1,136 @@
+.search {
+  width: 50%;
+  margin: 10px;
+  position: relative;
+}
+
+.item {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.item h5 {
+  text-align: center;
+}
+ .createPost {
+  font-size: 20px;
+ }
+.loading {
+  width: 100%;
+  text-align: center;
+  margin: 10;
+}
+.card-body {
+   display: flex;
+    flex-direction: column;
+}
+.btnCrud {
+   margin-top: auto;
+}
+.card-text{
+  flex-shrink: 0;
+}
+.nav-item {
+   margin-left: 4px;
+    border-radius: 10px;
+
+     background-color: rgb(35, 97, 233);
+    }
+    .nav-link  {
+   color: white !important
+   
+ }
+.navbar-brand {
+   padding: 5px 6px;
+    border-radius: 10px;
+     background-color: rgb(35,97,233);
+      font-weight: bold;
+       color: #fff !important;
+}
+.heading_Post {
+  text-transform: uppercase;
+
+}
+ textarea {
+   resize: none;
+    display: block;
+     width: 100%;
+      height: 300px;
+       color: gray;
+ }
+ #password {
+   color: gray;
+ }
+ form {
+   margin-top: 50px;
+   padding: 30px 20px;
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ }
+.search_modal {
+  padding: 15px;
+  margin-top: 10px;
+  width: 95%;
+  background: #fff;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow-y: hidden;
+  overflow-y: scroll;
+}
+.create_btn button {
+  padding: 5px 20px;
+   font-weight: bold;
+    border-radius: 10px;
+}
+ .thumbnail {
+   height: 250px; 
+ }
+.thumbnail_detail {
+   height: 400px;
+}
+.card-text , .card-body  h5 {
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical
+}
+.hide {
+  opacity: 0;
+}
+select {
+  padding: 5px 10px;
+   border-radius: 10px;
+}
+
+.card-body  h5  {
+  font-size: 20px !important;
+}
+.item_href {
+  text-decoration: none;
+}
+.item_href p {
+  color: #000;
+}
+.item_href .price {
+  font-weight: bold;
+  color: red;
+}
+.navbar-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.navbar-nav .menu-left {
+  display: flex;
+}
+.navbar-nav .menu-right {
+  display: flex;
+  gap: 7px;
+  margin-right: 5%;
+}
+.navbar-nav  a {
+  font-size: 16px;
+  font-weight: bold;
+}
