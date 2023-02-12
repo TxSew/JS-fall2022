@@ -101,18 +101,8 @@ const viewDetail = (detail) => {
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    View
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
-                    Edit
-                  </button>
+                   
+                 <button class="backHome"> Quay lại </button>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -161,8 +151,8 @@ viewCreatePost = () => {
     <p style="color:red" id="errors"></p>
     <button id="btn-login-submit" type="button" class="btn btn-primary">Save</button>
     </form>
-   ` 
-}
+   `;
+};
 updatePost = (update) => {
   return `
     <form>
@@ -184,8 +174,22 @@ updatePost = (update) => {
     <p style="color:red" id="errors"></p>
     <button id="btn-login-submit" type="button" class="btn btn-primary">Save</button>
     </form>
-   ` 
-}
+   `;
+};
+const viewAdmin = (item) => {
+  return`<div class="row">
+        <div class="col-md-3">
+          <img class="img-thumbnail" src="${item.thumbnail}" />
+        </div>
+        <div class="col-md-8">
+        <a data-id=${item.id} class="item_href" href="#"/>
+        <p>${item.title}</p>
+        <p class="price">${item.description}</p>
+        </a>
+        </div>
+    </div>
+ `;
+};
 export const router = (path = "/", data = {}) => {
   switch (path) {
     case "/":
@@ -196,10 +200,12 @@ export const router = (path = "/", data = {}) => {
       return viewLogin(data);
     case "/register":
       return viewRegister(data);
-  case "/createPost":
+    case "/createPost":
       return viewCreatePost(data);
- case "/updatePost":
+    case "/updatePost":
       return updatePost(data);
+    case "/admin":
+      return viewAdmin(data);
     default:
       return view404();
   }

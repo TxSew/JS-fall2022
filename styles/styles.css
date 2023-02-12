@@ -1,4 +1,30 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+body {
+  min-height: 100vh;
+}
+ ul ,li {
+   margin: 0 !important;
+    padding: 0 !important;
+ }
 .search {
+
+
   width: 50%;
   margin: 10px;
   position: relative;
@@ -33,19 +59,12 @@
 .nav-item {
    margin-left: 4px;
     border-radius: 10px;
-
-     background-color: rgb(35, 97, 233);
     }
-    .nav-link  {
-   color: white !important
    
- }
 .navbar-brand {
    padding: 5px 6px;
     border-radius: 10px;
-     background-color: rgb(35,97,233);
       font-weight: bold;
-       color: #fff !important;
 }
 .heading_Post {
   text-transform: uppercase;
@@ -100,6 +119,7 @@
   opacity: 0;
 }
 select {
+  margin-right: 15px;
   padding: 5px 10px;
    border-radius: 10px;
 }
@@ -110,6 +130,42 @@ select {
 .item_href {
   text-decoration: none;
 }
+ .hidden {
+   display: none;
+ }
+  .admin-box {
+     position: relative;
+      padding: 0 !important;
+       cursor: pointer;
+        font-weight: bold;
+         color: gray
+  }
+   .admin-box:hover {
+    color: black;
+   }
+   .admin-box:hover .admin_model {
+     opacity: 1;
+      visibility: inherit;
+   }
+   .admin_model {
+    position: absolute;
+    padding: 10px 50px;
+     background-color: #fff;
+     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      opacity: 0;
+       visibility: hidden;
+         z-index: 7;
+        left: 0;
+         border-radius: 10px;
+           width: 150px;
+           height: 70px;
+   }
+    .admin_model a{
+       text-decoration: none;
+        display: block;
+         padding-left: 10px;
+       color : black;
+    }
 .item_href p {
   color: #000;
 }
@@ -133,4 +189,13 @@ select {
 .navbar-nav  a {
   font-size: 16px;
   font-weight: bold;
+}
+@media (min-width: 1200px) {
+
+  .container, .container-lg, .container-md, .container-sm, .container-xl{
+max-width: 1300px !important;
+}
+}
+.my-5 {
+  padding: 0 !important;
 }

@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "title": "ROCK POWER T-SHIRT/DARK BROWA",
-      "description": "                     • Thông tin sản phẩm:   ROCK POWER T-SHIRT    HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL S  MATERIAL: PREMIUM COTTON. \n\n\n",
-      "image": "undefined",
-      "id": "SXuYLQ3"
-    },
-    {
       "title": "T-REX T-SHIRT/RED",
       "thumbnail": "https://product.hstatic.net/200000305259/product/new_v37_fred_5-01_f89ed5e0849f4791be0cd667b15b6944_master.jpg",
       "description": "• Thông tin sản phẩm:   T-REX T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. .",
@@ -14,8 +8,8 @@
     },
     {
       "title": "NORMAL T-SHIRT/DARK GREY",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-05_afb909968e684a5c9c9a5bc7e14a362a_master.jpg",
-      "description": "• Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON.",
+      "description": "       • Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON.\n",
+      "image": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-05_afb909968e684a5c9c9a5bc7e14a362a_master.jpg ",
       "id": "gf3B1y9"
     },
     {
@@ -35,12 +29,6 @@
       "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v17-04_5726c41d0e7946ba9b04489725398fbe_master.jpg",
       "description": "• Thông tin sản phẩm:   IDENTIFY T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
       "id": "M-R3WY_"
-    },
-    {
-      "title": "EMB LOGO T-SHIRT/GREY",
-      "description": "              • Thông tin sản phẩm:   EMB LOGO T-SHIRT   HOẠ TIẾT: THÊU MẬT ĐỘ CAO   COLOR: GREY   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. \n\n",
-      "image": "undefined ",
-      "id": "6mmAIPC"
     },
     {
       "title": "ROCK POWER T-SHIRT/DARK BROW",
@@ -71,12 +59,6 @@
       "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-06_ff79c27c3cbb4a928f85f0a685dfac84_master.jpg",
       "description": "• Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
       "id": "cDCyzEn"
-    },
-    {
-      "title": "admin123",
-      "description": "sdsd",
-      "image": "sdsd",
-      "id": "kxt3gOt"
     }
   ],
   "users": [
@@ -131,6 +113,18 @@
       "password": "sssss",
       "email": "iechodienn@gmail.com",
       "id": 8
+    },
+    {
+      "username": "admin",
+      "password": "1234566",
+      "email": "minhhacong868@gmail.com",
+      "id": 9
+    },
+    {
+      "username": "admin",
+      "password": "1234567",
+      "email": "iechodienn@gmail.com",
+      "id": 10
     }
   ]
 }

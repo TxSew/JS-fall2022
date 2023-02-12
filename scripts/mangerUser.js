@@ -7,7 +7,7 @@ class ManagerUser {
   // constructor(username, password) {}
   static async getAll() {
     const data = await getAll();
-    this.products = data;
+    this.users = data;
   }
   static async login(username, password) {
     console.log("isLogin call");

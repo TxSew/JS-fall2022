@@ -1,6 +1,6 @@
 //  *  array quản lý post
 //  */
-import { getAll, searchProduct , postData  } from "./services/productServices.js";
+import { getAll, searchProduct , postData , sort  } from "./services/productServices.js";
  const USER_PRODUCT ="user_product"
 class ManagerProduct {
   constructor(products) {
@@ -16,18 +16,22 @@ class ManagerProduct {
     });
     this.products = data;
   }
-  // tạo trường đăng ký
+   static async sort() {
+     const data = await sort();
+     this.products = data
+   }
+  // tạo trường tạo Course
   static async create(title, thumbnail , description) {
     console.log("isProduct , is call");
     const data = await postData(title, thumbnail, description);
     console.log("data", data.length);
     if (data.length > 0) {
-      ManagerProduct.saveUserData(data[0]);
+      ManagerProduct.saveProductData(data[0]);
       return true;
     }
     return false;
   }
-  static saveUserData(data) {
+  static saveProductData(data) {
     localStorage.setItem(USER_PRODUCT, JSON.stringify(data));
   }
  

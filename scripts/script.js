@@ -1,31 +1,24 @@
-import products from "../product.json";
 import ManagerProduct from "./mangerProduct.js";
 import ManagerUser from "./mangerUser.js";
 import { debounce } from "./helper/helper";
 import { router } from "./views/router.js";
 
-// const myPromise = new Promise(function (resolve, reject) {
-//   setTimeout(function () {
-//     resolve("I love You !!");
-//   }, 5000);
-// });
-
-// myPromise.then(function (value) {
-//   console.log(value);
-// });
-// console.log("1+2", 1 + 2);
-/**
- * lấy data của api trả về render html
- *  document.getElementById("products").innerHTML
- */
-// console.log("detailHtml", detailHtml);
 let productList = [];
 const fetchDada = async () => {
-  await ManagerProduct.getAll();
+   const data = await ManagerProduct.sort()
+    console.log(ManagerProduct.products)
   printHtml(ManagerProduct.products);
   productList = ManagerProduct.products;
+   viewAdmin(ManagerProduct.products)
 };
 fetchDada();
+ 
+
+ const fetchDataSort =  async () => {
+    await ManagerProduct.sort()
+     printHtml(ManagerProduct.products)
+ }
+  fetchDataSort()
 // const totalPage = Math.ceil(ManagerProduct.products.length /perPage)
 let currentPage = 1;
 let start = 0;
@@ -84,12 +77,78 @@ const printHtml = (data) => {
         (product) => product.id === id
       );
       rootHtml.innerHTML = router("/detail", detail[0]);
+      backHomeDetail()
       window.history.pushState({}, null, `/detail/${detail[0].title}`);
     })
-  );
+    );
   handleDelete();
   handleUpdate();
 };
+const printAdmin = (data) => {
+  const elPost = document.getElementById("items");
+  const View = data.map((item, index) => {
+    if (index >= start && index < end) {
+      return `
+       <div id="item" class="col-lg-3 col-md-12 mt-3">
+       <div class="card shadow-sm">
+         <img class="thumbnail" src="${item.thumbnail}" alt="Error Image"/>
+         <div class="card-body">
+         <h5 style="font-weight: bold">${item.title}</h5>
+           <p class="card-text">
+             ${item.description}
+           </p>
+           <div class="d-flex justify-content-between align-items-center btnCrud">
+             <div class="btn-group">
+               <button
+                 type="button"
+                 class="btn btn-sm btn-outline-secondary"
+               >
+                 <a  data-id="${item.id}" class="items_box" href="#"> View </a>
+               </button>
+               <button
+                 type="button"
+                 class="btn btn-sm btn-outline-secondary btn_updateCOde"
+                 data-id="${item.id}"
+               >
+                 Edit
+               </button>
+               <button
+               type="button"
+               data-id=${item.id}
+               class="btn-delete btn btn-sm btn-outline-danger"
+             >
+               delete
+             </button>
+             </div>
+             <small class="text-muted">9 mins</small>
+           </div>
+         </div>
+       </div>
+     </div>
+       `;
+    }
+  });
+  elPost.innerHTML = View.join("");
+  document.querySelectorAll(".items_box").forEach((e) =>
+    e.addEventListener("click", () => {
+      const id = e.getAttribute("data-id");
+      const detail = ManagerProduct.products.filter(
+        (product) => product.id === id
+      );
+      rootHtml.innerHTML = router("/detail", detail[0]);
+      backHomeDetail()
+      window.history.pushState({}, null, `/detail/${detail[0].title}`);
+    })
+    );
+  handleDelete();
+  handleUpdate();
+};
+ // quay laji trang chu tu trang chi tiet san pham 
+const backHomeDetail =() =>{
+ document.querySelector('.backHome').addEventListener("click" , () => {
+   window.location.reload()
+ })
+}
  // fetch NextBtn Page js
 const NextBtn = () => {
   document.querySelector(".nextBtn").addEventListener("click", () => {
@@ -104,14 +163,12 @@ NextBtn();
 const prevBtn = () => {
   document.querySelector(".prevBtn").addEventListener("click", () => {
     currentPage--;
-    
     start = (currentPage - 1) * perPage;
     end = currentPage * perPage;
     fetchDada();
   });
 };
 prevBtn();
-
 const inputSearch = document.getElementById("input-search");
 const spinerLoading = document.getElementById("loading-spiner");
 
@@ -145,7 +202,7 @@ inputSearch.addEventListener("blur", () => {
   const searchModal = document.querySelector(".search_modal");
   searchModal.classList.add("hide");
 });
-
+// Search model function
 const printModalSearchHtml = (data) => {
   const elPost = document.querySelector(".search_modal");
   console.log(elPost);
@@ -183,7 +240,7 @@ const printModalSearchHtml = (data) => {
     })
   );
 };
-
+// handel  Delete 
 const handleDelete = (callback) => {
   document.querySelectorAll(".btn-delete").forEach((e) =>
     e.addEventListener("click", (id) => {
@@ -206,10 +263,7 @@ const handleDelete = (callback) => {
           .then(function () {
             printHtml(productDeleted);
           });
-
-        // rootHtml.innerHTML = router("/detail", detail[0]);
-        // window.history.pushState({}, null, `/detail/${detail[0].id}`);
-      } else {
+     } else {
         return;
       }
     })
@@ -267,20 +321,20 @@ const xuLyLogin = () => {
       elErros.innerHTML = errors.join("</br>");
       return;
     } else {
-       alert("LOGIN SUCCESS...")
+
       // dang nhap thanh cong
       const isLogin = await ManagerUser.login(
         elUsername.value,
         elPassword.value
       );
-      //   $(".navbar-nav").append(` <li class="nav-item">
-      //   <a id="btn-logout" class="nav-link" href="#">Logout</a>
-      // </li>`);
       if (isLogin) {
+         document.querySelector("#btn-login").classList.add('hidden')
+         document.querySelector("#btn-register").classList.add('hidden')
         const navigation = document.querySelector(".navbar-nav");
         navigation.insertAdjacentHTML(
           "beforeend",
           `<li class="nav-item">
+        <a id="btn-admin" class="nav-link" href="#">admin</a>
         <a id="btn-logout" class="nav-link" href="#">Logout</a>
         </li>`
         );
@@ -289,64 +343,27 @@ const xuLyLogin = () => {
     }
   });
 };
-/**
- * get username, password, email
- * kiem tra user ton tai chua ?
- * co -> thong bao
- * chua -> luu vao db -> chuyen ve dang nhap
- */
-// const xuLyRegister = () => {
-//   const elUsername = document.getElementById("username");
-//   const elPassword = document.getElementById("password");
-//   const elButtonLogin = document.getElementById("btn-login-submit");
-//   const elErros = document.getElementById("errors");
-//   const errors = [];
-//   console.log("elButtonLogin", elButtonLogin);
-//   elButtonLogin.addEventListener("click", async (event) => {
-//     event.preventDefault();
-//     if (elUsername.value.trim() === "") {
-//       errors.push("user not empty");
-//     }
-//     if (elPassword.value.trim() === "") {
-//       errors.push("password not empty");
-//     }
-//     if (errors.length > 0) {
-//       // show error message
-//       elErros.innerHTML = errors.join("</br>");
-//       return;
-//     } else {
-//       // dang nhap thanh cong
-//       const isLogin = await ManagerUser.login(
-//         elUsername.value,
-//         elPassword.value
-//       );
-//       //   $(".navbar-nav").append(` <li class="nav-item">
-//       //   <a id="btn-logout" class="nav-link" href="#">Logout</a>
-//       // </li>`);
-//       if (isLogin) {
-//         const navigation = document.querySelector(".navbar-nav");
-//         navigation.insertAdjacentHTML(
-//           "beforeend",
-//           `<li class="nav-item">
-//         <a id="btn-logout" class="nav-link" href="#">Logout</a>
-//         </li>`
-//         );
-//       }
-//     }
-//   });
-// };
 
 const checkUser = () => {
   const isLogin = ManagerUser.checkLogin();
   if (isLogin) {
     const user = ManagerUser.getUser();
     console.log("user", user);
+     if ( user) {
+document.querySelector("#btn-login").classList.add('hidden')
+         document.querySelector("#btn-register").classList.add('hidden')
+     }
     const navigation = document.querySelector(".menu-right");
     navigation.insertAdjacentHTML(
       "beforeend",
-      `<li class="nav-item">
-      <a class="nav-link nav_logout" href="#">Logout</a>
-      </li>`
+      `<ul class="admin-box">
+       ADMIN
+        <li class="nav-link admin_model">
+        <a class="nav-link nav_logout" href="#">Logout</a>
+        <a href="nav-link ">Cpanel Admin</a>
+        </li>
+      </ul>`
+
     );
     // View Login
   } else {
@@ -360,15 +377,30 @@ const logout = () => {
   console.log("el", el);
   if (el) {
     el.addEventListener("click", () => {
+      document.querySelector("#btn-login").classList.remove('hidden')
+         document.querySelector("#btn-register").classList.remove('hidden')
+
       ManagerUser.logout();
       rootHtml.innerHTML = router("/login");
       window.history.pushState({}, null, `/login`);
+       window.location.reload()
       el.remove();
     });
   }
 };
 
 logout();
+// xu ly view admin
+ const viewAdmin = (data) => {
+   console.log("data" , data)
+   const admin = document.querySelector("#btn-admin")
+    console.log(admin)
+    if(admin) {
+       admin.addEventListener("click" , () => {
+          
+       })
+    } 
+ }
 // sử lý đăng ký
 const xuLyRegister = () => {
   const elUsername = document.getElementById("username");
@@ -395,7 +427,6 @@ const xuLyRegister = () => {
       return ;
     } else {
       // dang nhap thanh cong
-       alert("REGISTER SUCCESS...")
       const isRegister = await ManagerUser.register(
         elUsername.value,
         elPassword.value,
