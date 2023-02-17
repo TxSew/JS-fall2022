@@ -1,129 +1,139 @@
 {
   "products": [
     {
-      "title": "T-REX T-SHIRT/RED",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/new_v37_fred_5-01_f89ed5e0849f4791be0cd667b15b6944_master.jpg",
-      "description": "• Thông tin sản phẩm:   T-REX T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. .",
-      "id": "jT8W9pa"
+      "title": "sshhss",
+      "description": "       sssssssssssssssssssssssss\n",
+      "thumb": "https://photo-baomoi.bmcdn.me/w300_r3x2/2023_02_13_114_45027559/f8d09f41920c7b52221d.jpg  ",
+      "id": 45027559
     },
     {
-      "title": "NORMAL T-SHIRT/DARK GREY",
-      "description": "       • Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON.\n",
-      "image": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-05_afb909968e684a5c9c9a5bc7e14a362a_master.jpg ",
-      "id": "gf3B1y9"
+      "title": "Thổ Nhĩ Kỳ xử lý các công ty xây dựng sau thảm họa động đất",
+      "description": "       Khi số người thiệt mạng trong trận động đất kinh hoàng tại Thổ Nhĩ Kỳ và Syria vẫn đang tiếp tục tăng lên hơn 33.000 người, chính phủ Thổ Nhĩ Kỳ đã bắt đầu thực hiện các hành động pháp lý với các công ty xây dựng.\n",
+      "thumb": "https://photo-baomoi.bmcdn.me/w300_r3x2_sm/2023_02_13_595_45027565/b619ed88e0c5099b50d4.jpg ",
+      "id": 45027565
     },
     {
-      "title": "SOFT T-SHIRT/RED",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/new_v12_fred_5-01_8a4593ecd28d45dda75c75225f484f37_master.jpg",
-      "description": "• Thông tin sản phẩm:   SOFT T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "SMPH7P1"
+      "title": "Trung Quốc cũng tuyên bố phát hiện và 'chuẩn bị bắn hạ' vật thể bay lạ 123",
+      "description": "       Trong bối cảnh Mỹ và Canada liên tiếp phát hiện và bắn hạ các vật thể bay lạ những ngày qua, Trung Quốc hôm qua (12/2) cũng đưa ra thông báo về việc phát hiện và chuẩn bị bắn hạ vật thể bay không xác định ở vùng biển phía Đông nước này.\n",
+      "thumb": "https://photo-baomoi.bmcdn.me/w300_r3x2/2023_02_13_65_45027560/a4dc549946d4af8af6c5.jpg ",
+      "id": 45027560
     },
     {
-      "title": "WORLD MAP T-SHIRT/WHITE",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v16-02_c3e0ddcda03d4202a6c6eb382908f77b_master.jpg",
-      "description": "• Thông tin sản phẩm:   WORLD MAP T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "12fE0WJ"
+      "id": 45027417,
+      "contentId": 45027417,
+      "title": "Tướng Mỹ không loại trừ khả năng các UFO từ người ngoài hành tinh",
+      "description": "Tướng Mỹ Glen VanHerck nói ông không loại trừ khả năng các vật thể không xác định bị bắn hạ vừa qua là từ người ngoài hành tinh và dẫn đầu nhiệm vụ tìm đáp án cho tình báo Mỹ.",
+      "date": 1676255730,
+      "url": "/tuong-my-khong-loai-tru-kha-nang-cac-ufo-tu-nguoi-ngoai-hanh-tinh/c/45027417.epi",
+      "redirectUrl": "/tuong-my-khong-loai-tru-kha-nang-cac-ufo-tu-nguoi-ngoai-hanh-tinh/r/45027417.epi",
+      "thumb": "https://photo-baomoi.bmcdn.me/w300_r3x2_sm/2023_02_13_119_45027417/f56512f51fb8f6e6afa9.jpg",
+      "thumbL": "https://photo-baomoi.bmcdn.me/w700_r16x9_sm/2023_02_13_119_45027417/f56512f51fb8f6e6afa9.jpg",
+      "classNames": "",
+      "publisher": {
+        "logo": "https://photo-baomoi.bmcdn.me/d59db7f26ab183efdaa0.png",
+        "icon": "https://photo-baomoi.bmcdn.me/d5de484568088156d819.png",
+        "width": 124,
+        "height": 64,
+        "url": "/tap-chi-tri-thuc-truc-tuyen/p/119.epi",
+        "name": "Tạp chí Tri Thức Trực Tuyến"
+      },
+      "index": 16,
+      "cluster": {
+        "id": 34061951,
+        "objectType": 5,
+        "name": "#hồ Huron",
+        "url": "/ho-huron/t/34061951.epi",
+        "total": 54
+      }
     },
     {
-      "title": "IDENTIFY T-SHIRT/DARK GREY",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v17-04_5726c41d0e7946ba9b04489725398fbe_master.jpg",
-      "description": "• Thông tin sản phẩm:   IDENTIFY T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "M-R3WY_"
+      "id": 45027413,
+      "contentId": 45027413,
+      "title": "Số người chết vì động đất lên tới 33.000, nội chiến Syria cản trở cứu trợ",
+      "description": "Lực lượng cứu hộ đã kéo thêm nhiều người sống sót khỏi đống đổ nát khi Thổ Nhĩ Kỳ bắt đầu các hành động pháp lý.",
+      "date": 1676254971,
+      "url": "/so-nguoi-chet-vi-dong-dat-len-toi-33-000-noi-chien-syria-can-tro-cuu-tro/c/45027413.epi",
+      "redirectUrl": "/so-nguoi-chet-vi-dong-dat-len-toi-33-000-noi-chien-syria-can-tro-cuu-tro/r/45027413.epi",
+      "thumb": "https://photo-baomoi.bmcdn.me/w300_r3x2/2023_02_13_35_45027413/e6d30b43060eef50b61f.jpg",
+      "thumbL": "https://photo-baomoi.bmcdn.me/w700_r16x9/2023_02_13_35_45027413/e6d30b43060eef50b61f.jpg",
+      "classNames": "",
+      "publisher": {
+        "logo": "https://photo-baomoi.bmcdn.me/1efe2391fed2178c4ec3.png",
+        "icon": "https://photo-baomoi.bmcdn.me/0deb80db62988bc6d289.png",
+        "width": 244,
+        "height": 64,
+        "url": "/bao-cong-thuong/p/35.epi",
+        "name": "Báo Công Thương"
+      },
+      "index": 17,
+      "cluster": {
+        "id": 33965061,
+        "objectType": 5,
+        "name": "#thổ nhĩ kỳ",
+        "url": "/tho-nhi-ky/t/33965061.epi",
+        "total": 1253
+      }
     },
     {
-      "title": "ROCK POWER T-SHIRT/DARK BROW",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v34-04_9db31f34ac594c26b03d9c6b368e7bf7_master.jpg",
-      "description": "• Thông tin sản phẩm:   ROCK POWER T-SHIRT    HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "hupUlLS"
-    },
-    {
-      "title": "ROCK POWER T-SHIRT/RED",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/new_v34_fred_5-01_768efc321cb445ea9e15d104c65a7786_master.jpg",
-      "description": "• Thông tin sản phẩm:   ROCK POWER T-SHIRT    HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "T_tDDky"
-    },
-    {
-      "title": "IDENTIFY T-SHIRT/DARK GREYS",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v17-04_5726c41d0e7946ba9b04489725398fbe_master.jpg",
-      "description": "• Thông tin sản phẩm:   IDENTIFY T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "SMwLFYB"
-    },
-    {
-      "title": "NORMAL T-SHIRT/DARK GREYT",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-05_afb909968e684a5c9c9a5bc7e14a362a_master.jpg",
-      "description": "• Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON.",
-      "id": "UeFr0lu"
-    },
-    {
-      "title": "NORMAL T-SHIRT/DARK BROW",
-      "thumbnail": "https://product.hstatic.net/200000305259/product/vgc-mockup_tee_art_v22-06_ff79c27c3cbb4a928f85f0a685dfac84_master.jpg",
-      "description": "• Thông tin sản phẩm:   NORMAL T-SHIRT   HOẠ TIẾT: IN LỤA U.S.A INK   COLOR: BLACK / WHITE / DARK GREEN / DARK BROW / DARK GREY / DARK RED   SIZE: M / L / XL   MATERIAL: PREMIUM COTTON. ",
-      "id": "cDCyzEn"
+      "title": "tomnyson@gmail.com",
+      "thumbnail": "sd",
+      "description": "sdsd",
+      "id": 45027566
     }
   ],
   "users": [
     {
-      "id": 1,
-      "email": "tabletkindfire@gmail.com",
-      "username": "admin",
-      "password": "123456",
-      "role": "admin",
-      "createdAt": "2022-02-23T18:13:11.710Z"
-    },
-    {
       "id": 2,
-      "email": "user@gmail.com",
-      "username": "user",
-      "password": "123456",
-      "role": "user",
-      "createdAt": "2022-02-23T18:13:11.710Z"
+      "username": "dothanh123",
+      "password": "12345a",
+      "email": "minhhacong912@gmail.com"
     },
     {
-      "username": "SADAS",
-      "password": "SDSA",
-      "email": "ASDSADS",
+      "username": "anhthanhq",
+      "password": "122333a",
+      "email": "minhacong912@gmail.com",
       "id": 3
     },
     {
-      "username": "admin123asd",
-      "password": "sdsd",
-      "email": "minhacong912@gmail.coms",
+      "username": "anhthanhq3",
+      "password": "122333a",
+      "email": "minhacong912@gmail.com",
       "id": 4
     },
     {
-      "username": "doquangthanh123",
-      "password": "123457a",
-      "email": "minhacong912@gmail.coms",
+      "username": "admin132a",
+      "password": "12345a",
+      "email": "minhhacong868@gmail.com",
       "id": 5
     },
     {
-      "username": "doquangthanh",
-      "password": "anhthanh200",
+      "username": "admin123aa",
+      "password": "123456s",
       "email": "doquangthanhpro@outlook.com.vn",
       "id": 6
     },
     {
-      "username": "doquangthanh",
-      "password": "12345a",
+      "username": "admin123aaz",
+      "password": "123456s",
       "email": "doquangthanhpro@outlook.com.vn",
       "id": 7
     },
     {
-      "username": "admin123asd",
-      "password": "sssss",
-      "email": "iechodienn@gmail.com",
+      "username": "admin132as",
+      "password": "1234567a",
+      "email": "minhacong912@gmail.com",
       "id": 8
     },
     {
-      "username": "admin",
-      "password": "1234566",
+      "username": "admin132asa",
+      "password": "1234567a",
       "email": "minhhacong868@gmail.com",
       "id": 9
     },
     {
-      "username": "admin",
-      "password": "1234567",
-      "email": "iechodienn@gmail.com",
+      "username": "admin1234",
+      "password": "123456",
+      "email": "minhhacong8638@gmail.com",
       "id": 10
     }
   ]

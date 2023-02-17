@@ -2,66 +2,44 @@ import ManagerProduct from "./mangerProduct.js";
 import ManagerUser from "./mangerUser.js";
 import { debounce } from "./helper/helper";
 import { router } from "./views/router.js";
+import CardManger from "./mangerCard.js";
 
 let productList = [];
 const fetchDada = async () => {
-   const data = await ManagerProduct.sort()
-    console.log(ManagerProduct.products)
+  console.log(ManagerProduct.products);
+  const data = await ManagerProduct.getAll();
   printHtml(ManagerProduct.products);
   productList = ManagerProduct.products;
-   viewAdmin(ManagerProduct.products)
 };
 fetchDada();
- 
 
- const fetchDataSort =  async () => {
-    await ManagerProduct.sort()
-     printHtml(ManagerProduct.products)
- }
-  fetchDataSort()
 // const totalPage = Math.ceil(ManagerProduct.products.length /perPage)
 let currentPage = 1;
 let start = 0;
 let perPage = 8;
 let end = perPage;
-  // console.log(totalPage)
+// console.log(totalPage)
 const printHtml = (data) => {
   const elPost = document.getElementById("items");
   const View = data.map((item, index) => {
     if (index >= start && index < end) {
       return `
-       <div id="item" class="col-lg-3 col-md-12 mt-3">
+       <div id="item" class="col-lg-3 col-md-12 mt-5">
        <div class="card shadow-sm">
-         <img class="thumbnail" src="${item.thumbnail}" alt="Error Image"/>
+         <img class="thumbnail" src="${item.thumb}" alt="Error Image"/>
          <div class="card-body">
-         <h5 style="font-weight: bold">${item.title}</h5>
-           <p class="card-text">
-             ${item.description}
-           </p>
+         <h5   style="font-weight:bold flex-shrink:0">
+         <a data-id="${item.id}" class="items_box" style="color:black; text-decoration:none" href="#">${item.title} <a/> 
+         </h5>
            <div class="d-flex justify-content-between align-items-center btnCrud">
              <div class="btn-group">
-               <button
-                 type="button"
-                 class="btn btn-sm btn-outline-secondary"
-               >
-                 <a  data-id="${item.id}" class="items_box" href="#"> View </a>
-               </button>
-               <button
-                 type="button"
-                 class="btn btn-sm btn-outline-secondary btn_updateCOde"
-                 data-id="${item.id}"
-               >
-                 Edit
-               </button>
-               <button
-               type="button"
-               data-id=${item.id}
-               class="btn-delete btn btn-sm btn-outline-danger"
-             >
-               delete
-             </button>
+         <img style="width:100px; height:20px" class="thumbnail" src="${item.logo}" alt="Error Image"/>
              </div>
-             <small class="text-muted">9 mins</small>
+             <small class="text-muted">
+             <button data-id="${item.id}" class="btnCard"> Mua </button>
+ <button data-id="${item.id}" class="btn-delete"> Delete </button>
+  <button data-id="${item.id}" class="btn_updateCOde"> Edit </button>
+             </small>
            </div>
          </div>
        </div>
@@ -73,87 +51,33 @@ const printHtml = (data) => {
   document.querySelectorAll(".items_box").forEach((e) =>
     e.addEventListener("click", () => {
       const id = e.getAttribute("data-id");
+      console.log("id", id);
+      console.log("ManagerProduct", ManagerProduct.products);
+
       const detail = ManagerProduct.products.filter(
-        (product) => product.id === id
+        (product) => product.id === Number(id)
       );
+      console.log("detail", detail);
       rootHtml.innerHTML = router("/detail", detail[0]);
-      backHomeDetail()
-      window.history.pushState({}, null, `/detail/${detail[0].title}`);
+      backHomeDetail();
     })
-    );
+  );
   handleDelete();
   handleUpdate();
+  handleAddCard();
 };
-const printAdmin = (data) => {
-  const elPost = document.getElementById("items");
-  const View = data.map((item, index) => {
-    if (index >= start && index < end) {
-      return `
-       <div id="item" class="col-lg-3 col-md-12 mt-3">
-       <div class="card shadow-sm">
-         <img class="thumbnail" src="${item.thumbnail}" alt="Error Image"/>
-         <div class="card-body">
-         <h5 style="font-weight: bold">${item.title}</h5>
-           <p class="card-text">
-             ${item.description}
-           </p>
-           <div class="d-flex justify-content-between align-items-center btnCrud">
-             <div class="btn-group">
-               <button
-                 type="button"
-                 class="btn btn-sm btn-outline-secondary"
-               >
-                 <a  data-id="${item.id}" class="items_box" href="#"> View </a>
-               </button>
-               <button
-                 type="button"
-                 class="btn btn-sm btn-outline-secondary btn_updateCOde"
-                 data-id="${item.id}"
-               >
-                 Edit
-               </button>
-               <button
-               type="button"
-               data-id=${item.id}
-               class="btn-delete btn btn-sm btn-outline-danger"
-             >
-               delete
-             </button>
-             </div>
-             <small class="text-muted">9 mins</small>
-           </div>
-         </div>
-       </div>
-     </div>
-       `;
-    }
+
+// quay laji trang chu tu trang chi tiet san pham
+const backHomeDetail = () => {
+  document.querySelector(".backHome").addEventListener("click", () => {
+    window.location.reload();
   });
-  elPost.innerHTML = View.join("");
-  document.querySelectorAll(".items_box").forEach((e) =>
-    e.addEventListener("click", () => {
-      const id = e.getAttribute("data-id");
-      const detail = ManagerProduct.products.filter(
-        (product) => product.id === id
-      );
-      rootHtml.innerHTML = router("/detail", detail[0]);
-      backHomeDetail()
-      window.history.pushState({}, null, `/detail/${detail[0].title}`);
-    })
-    );
-  handleDelete();
-  handleUpdate();
 };
- // quay laji trang chu tu trang chi tiet san pham 
-const backHomeDetail =() =>{
- document.querySelector('.backHome').addEventListener("click" , () => {
-   window.location.reload()
- })
-}
- // fetch NextBtn Page js
+// fetch NextBtn Page js
 const NextBtn = () => {
   document.querySelector(".nextBtn").addEventListener("click", () => {
     currentPage++;
-    
+
     start = (currentPage - 1) * perPage;
     end = currentPage * perPage;
     fetchDada();
@@ -215,7 +139,7 @@ const printModalSearchHtml = (data) => {
     html += `
     <div class="row">
         <div class="col-md-3">
-          <img class="img-thumbnail" src="${item.thumbnail}" />
+          <img class="img-thumbnail" src="${item.thumb}" />
         </div>
         <div class="col-md-8">
         <a data-id=${item.id} class="item_href" href="#"/>
@@ -240,14 +164,14 @@ const printModalSearchHtml = (data) => {
     })
   );
 };
-// handel  Delete 
+// handel  Delete
 const handleDelete = (callback) => {
   document.querySelectorAll(".btn-delete").forEach((e) =>
     e.addEventListener("click", (id) => {
       const i = e.getAttribute("data-id");
       if (confirm("are you sure delete") == true) {
         const productDeleted = ManagerProduct.products.filter(
-          (product) => product.id !== i
+          (product) => product.id !== Number(id)
         );
         console.log(productDeleted);
         var options = {
@@ -262,8 +186,9 @@ const handleDelete = (callback) => {
           })
           .then(function () {
             printHtml(productDeleted);
+             window.location.reload()
           });
-     } else {
+      } else {
         return;
       }
     })
@@ -321,15 +246,14 @@ const xuLyLogin = () => {
       elErros.innerHTML = errors.join("</br>");
       return;
     } else {
-
       // dang nhap thanh cong
       const isLogin = await ManagerUser.login(
         elUsername.value,
         elPassword.value
       );
       if (isLogin) {
-         document.querySelector("#btn-login").classList.add('hidden')
-         document.querySelector("#btn-register").classList.add('hidden')
+        document.querySelector("#btn-login").classList.add("hidden");
+        document.querySelector("#btn-register").classList.add("hidden");
         const navigation = document.querySelector(".navbar-nav");
         navigation.insertAdjacentHTML(
           "beforeend",
@@ -349,21 +273,20 @@ const checkUser = () => {
   if (isLogin) {
     const user = ManagerUser.getUser();
     console.log("user", user);
-     if ( user) {
-document.querySelector("#btn-login").classList.add('hidden')
-         document.querySelector("#btn-register").classList.add('hidden')
-     }
+    if (user) {
+      document.querySelector("#btn-login").classList.add("hidden");
+      document.querySelector("#btn-register").classList.add("hidden");
+    }
     const navigation = document.querySelector(".menu-right");
     navigation.insertAdjacentHTML(
       "beforeend",
       `<ul class="admin-box">
        ADMIN
         <li class="nav-link admin_model">
-        <a class="nav-link nav_logout" href="#">Logout</a>
         <a href="nav-link ">Cpanel Admin</a>
+        <a class="nav-link nav_logout" href="#">Logout</a>
         </li>
       </ul>`
-
     );
     // View Login
   } else {
@@ -377,13 +300,13 @@ const logout = () => {
   console.log("el", el);
   if (el) {
     el.addEventListener("click", () => {
-      document.querySelector("#btn-login").classList.remove('hidden')
-         document.querySelector("#btn-register").classList.remove('hidden')
+      document.querySelector("#btn-login").classList.remove("hidden");
+      document.querySelector("#btn-register").classList.remove("hidden");
 
       ManagerUser.logout();
       rootHtml.innerHTML = router("/login");
       window.history.pushState({}, null, `/login`);
-       window.location.reload()
+      window.location.reload();
       el.remove();
     });
   }
@@ -391,16 +314,8 @@ const logout = () => {
 
 logout();
 // xu ly view admin
- const viewAdmin = (data) => {
-   console.log("data" , data)
-   const admin = document.querySelector("#btn-admin")
-    console.log(admin)
-    if(admin) {
-       admin.addEventListener("click" , () => {
-          
-       })
-    } 
- }
+ // back PageHome
+  
 // sử lý đăng ký
 const xuLyRegister = () => {
   const elUsername = document.getElementById("username");
@@ -414,17 +329,18 @@ const xuLyRegister = () => {
     if (elUsername.value.trim() === "") {
       errors.push("user not empty");
     }
-    if (elPassword.value.trim() === "") {
+    if (elPassword.value.trim() === "" && elPassword.value.length < 3) {
       errors.push("password not empty");
     }
-    if (elEmail.value.trim() === "") {
-      errors.push("email not empty");
-       
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(elEmail.value.trim())) {
+      errors.push("email not emty");
     }
     if (errors.length > 0) {
       // show error message
       elErros.innerHTML = errors.join("</br>");
-      return ;
+      return;
     } else {
       // dang nhap thanh cong
       const isRegister = await ManagerUser.register(
@@ -447,6 +363,7 @@ const xuLyRegister = () => {
           }),
         };
         fetch("http://localhost:3000/users", options);
+         rootHtml.innerHTML = router('/login')
       } else {
         elErros.innerHTML = "user đã tồn tại";
       }
@@ -506,6 +423,9 @@ function xulyCreatePost() {
           }),
         };
         fetch("http://localhost:3000/products", options);
+         window.location.reload()
+         
+
       } else {
         elErros.innerHTML = "user đã tồn tại";
       }
@@ -516,11 +436,11 @@ function xulyCreatePost() {
 function handleUpdate() {
   document.querySelectorAll(".btn_updateCOde").forEach((e) => {
     const id = e.getAttribute("data-id");
-    e.addEventListener("click", () => {   
+    e.addEventListener("click", () => {
       const ProductEdit = ManagerProduct.products.filter((product) => {
-        return product.id === id;
+        return product.id === Number(id);
       });
-      rootHtml.innerHTML = router("/updatePost", ProductEdit[0] );  
+      rootHtml.innerHTML = router("/updatePost", ProductEdit[0]);
       window.history.pushState({}, null, `/updatePost/${ProductEdit[0].id}`);
       console.log(ProductEdit);
       const submitEdit = document.getElementById("btn-login-submit");
@@ -531,7 +451,7 @@ function handleUpdate() {
         var formdata = {
           title: user.value,
           description: des.value,
-          image: pass.value,
+          thumb: pass.value,
         };
         const options = {
           method: "PUT",
@@ -543,9 +463,57 @@ function handleUpdate() {
         fetch("http://localhost:3000/products" + "/" + id, options).then(
           (res) => {
             res.json();
+             window.location.reload()
           }
         );
       });
     });
   });
 }
+//   add Card
+
+const handleAddCard = () => {
+  document.querySelectorAll(".btnCard").forEach((e) => {
+    e.addEventListener("click", () => {
+      const id = e.getAttribute("data-id");
+      const addProduct = ManagerProduct.products.filter(
+        (card) => card.id === Number(id)
+        );
+        console.log(addProduct);
+        cardData.add({ ...addProduct[0], quantity: 1 });
+        console.log("addProduct", cardData.carts);
+      });
+    });
+  };
+   // router View card
+  const cardData = new CardManger();
+    document
+    .querySelector("#btn-card")
+    .addEventListener("click", () => {
+      rootHtml.innerHTML = router("/card", cardData);
+      window.history.pushState({}, null, `/card`);
+      deleteCard()
+       checkout()
+    });
+
+    const deleteCard = () => {
+      const del = document.querySelectorAll(".delete_card");
+      del.forEach((e) => {
+        e.addEventListener("click", () => {
+          const id = e.getAttribute("data-id");
+         console.log(cardData.carts)
+       const dels = cardData.remove(Number(id));
+          console.log(dels);
+          //render card
+          rootHtml.innerHTML = router('/card' , cardData)
+          window.history.pushState({} , null , '/card')
+          
+        });
+      });
+};
+ function checkout () {
+    document.querySelector('.checkout-btn').addEventListener('click' , function () {
+    
+    })
+ }
+

@@ -1,6 +1,6 @@
 const viewRegister = () => {
   return `
-  <form>
+    <form>
   <h3>Register</h3>
         <div class="form-group">
             <label for="username">Username:</label>
@@ -85,7 +85,6 @@ const viewHome = (data) => {
 };
 
 const viewDetail = (detail) => {
-  console.log("detail", detail);
   return `<div>
       <div class="loading">
         <div id="loading-spiner" class="text-primary" role="status"></div>
@@ -93,7 +92,7 @@ const viewDetail = (detail) => {
       <div id="items" class="row">
         <div class="col-sm-12">
           <div class="card shadow-sm">
-            <img class="thumbnail_detail" style="height:450px" src="${detail.thumbnail}"/>
+            <img class="thumbnail" style="height:450px" src="${detail.thumb}"/>
             <div class="card-body">
              <h3>${detail.title}</h3>
               <p class="card-text">
@@ -163,7 +162,8 @@ updatePost = (update) => {
     </div>
     <div class="form-group">
       <label for="password">thumbnail:</label>
-      <input type="text" class="form-control" id="password" value="${update.thumbnail} ">
+      <input type="text" class="form-control" id="password" value="${update.thumb} ">
+
     </div>
  <div class="form-group">
       <label for="password">Description:</label>
@@ -177,7 +177,7 @@ updatePost = (update) => {
    `;
 };
 const viewAdmin = (item) => {
-  return`<div class="row">
+  return `<div class="row">
         <div class="col-md-3">
           <img class="img-thumbnail" src="${item.thumbnail}" />
         </div>
@@ -189,6 +189,72 @@ const viewAdmin = (item) => {
         </div>
     </div>
  `;
+};
+const viewCard = (card) => {
+  //  const total = card.getTotal()
+  console.log(card);
+  const html = card.carts.map((e) => {
+    return `
+             <div class="card shadow-0 border mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img style="height:200px; width: 300px" src="${e.thumb}"
+                      class="img-fluid" alt="Phone">
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0">${e.title}</p>
+                  </div>
+                  
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">Capacity: ${e.price} </p>
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">Qty: ${e.quantity}</p>
+                  </div>
+                  <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">$${
+                      e.price * e.quantity
+                    }</p>
+                  </div>
+                </div>
+                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                 <div class="col-md-2 text-center f-flex justify-content-center"> <button class="delete_card" data-id="${
+                   e.id
+                 }" > remove </button> </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+         `;
+  });
+  return `
+   <section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card" style="border-radius: 10px;">
+          <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">Anna</span>!</h5>
+          </div>
+          ${html.join("")}  
+                              <div class="card-footer border-0 px-4 py-5"
+            style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+             <div class="checkout-btn bold" style="font-weight: bold ; color : #fff ; border : 1px solid gray; display: inline; text-center padding : 2px 10px">checkout</div>
+            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
+              paid: <span class="h2 mb-0 ms-2"></span></h5>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+</section>
+`;
+};
+const viewCheckout = () => {
+  return `
+    <p> checkout </p>
+   `;
 };
 export const router = (path = "/", data = {}) => {
   switch (path) {
@@ -206,6 +272,11 @@ export const router = (path = "/", data = {}) => {
       return updatePost(data);
     case "/admin":
       return viewAdmin(data);
+    case "/card":
+      return viewCard(data);
+    case "/checkout":
+      return viewCheckout(data);
+
     default:
       return view404();
   }

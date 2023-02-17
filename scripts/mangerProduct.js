@@ -1,6 +1,7 @@
 //  *  array quản lý post
 //  */
-import { getAll, searchProduct , postData , sort  } from "./services/productServices.js";
+import { getAll, searchProduct , postData  } from "./services/productServices.js";
+
  const USER_PRODUCT ="user_product"
 class ManagerProduct {
   constructor(products) {
@@ -16,10 +17,7 @@ class ManagerProduct {
     });
     this.products = data;
   }
-   static async sort() {
-     const data = await sort();
-     this.products = data
-   }
+
   // tạo trường tạo Course
   static async create(title, thumbnail , description) {
     console.log("isProduct , is call");
