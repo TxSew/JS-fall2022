@@ -18,7 +18,8 @@
     "watch": "parcel watch"
   },
   "devDependencies": {
-    "parcel": "^2.8.2"
+    "parcel": "^2.8.3",
+    "parcel-bundler": "^1.12.5"
   },
   "description": "npm install -g json-server",
   "bugs": {

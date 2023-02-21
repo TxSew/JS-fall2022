@@ -10,6 +10,9 @@ import { fetchProduct } from "../api/index.js";
 export const getAll = async () => {
   return fetchProduct("products");
 };
+ export const getLichsu = async () => {
+   return fetchProduct("checkout")
+ }
 // kiểm tra empty object
 const isEmpty = (value) => {
   return Object.keys(value).length === 0;

@@ -3,6 +3,7 @@ import ManagerUser from "./mangerUser.js";
 import { debounce } from "./helper/helper";
 import { router } from "./views/router.js";
 import CardManger from "./mangerCard.js";
+import ManagerCheckout from "./managerCheckout.js";
 
 let productList = [];
 const fetchDada = async () => {
@@ -26,14 +27,13 @@ const printHtml = (data) => {
       return `
        <div id="item" class="col-lg-3 col-md-12 mt-5">
        <div class="card shadow-sm">
-         <img class="thumbnail" src="${item.thumb}" alt="Error Image"/>
+         <img class="thumbnail" src="${item.image}" alt="Error Image"/>
          <div class="card-body">
          <h5   style="font-weight:bold flex-shrink:0">
          <a data-id="${item.id}" class="items_box" style="color:black; text-decoration:none" href="#">${item.title} <a/> 
          </h5>
            <div class="d-flex justify-content-between align-items-center btnCrud">
              <div class="btn-group">
-         <img style="width:100px; height:20px" class="thumbnail" src="${item.logo}" alt="Error Image"/>
              </div>
              <small class="text-muted">
              <button data-id="${item.id}" class="btnCard"> Mua </button>
@@ -55,7 +55,7 @@ const printHtml = (data) => {
       console.log("ManagerProduct", ManagerProduct.products);
 
       const detail = ManagerProduct.products.filter(
-        (product) => product.id === Number(id)
+        (product) => product.id === id
       );
       console.log("detail", detail);
       rootHtml.innerHTML = router("/detail", detail[0]);
@@ -139,7 +139,7 @@ const printModalSearchHtml = (data) => {
     html += `
     <div class="row">
         <div class="col-md-3">
-          <img class="img-thumbnail" src="${item.thumb}" />
+          <img class="img-thumbnail" src="${item.image}" />
         </div>
         <div class="col-md-8">
         <a data-id=${item.id} class="item_href" href="#"/>
@@ -186,7 +186,7 @@ const handleDelete = (callback) => {
           })
           .then(function () {
             printHtml(productDeleted);
-             window.location.reload()
+            window.location.reload();
           });
       } else {
         return;
@@ -314,8 +314,8 @@ const logout = () => {
 
 logout();
 // xu ly view admin
- // back PageHome
-  
+// back PageHome
+
 // sử lý đăng ký
 const xuLyRegister = () => {
   const elUsername = document.getElementById("username");
@@ -363,7 +363,7 @@ const xuLyRegister = () => {
           }),
         };
         fetch("http://localhost:3000/users", options);
-         rootHtml.innerHTML = router('/login')
+        rootHtml.innerHTML = router("/login");
       } else {
         elErros.innerHTML = "user đã tồn tại";
       }
@@ -423,9 +423,7 @@ function xulyCreatePost() {
           }),
         };
         fetch("http://localhost:3000/products", options);
-         window.location.reload()
-         
-
+        window.location.reload();
       } else {
         elErros.innerHTML = "user đã tồn tại";
       }
@@ -463,7 +461,7 @@ function handleUpdate() {
         fetch("http://localhost:3000/products" + "/" + id, options).then(
           (res) => {
             res.json();
-             window.location.reload()
+            window.location.reload();
           }
         );
       });
@@ -477,43 +475,128 @@ const handleAddCard = () => {
     e.addEventListener("click", () => {
       const id = e.getAttribute("data-id");
       const addProduct = ManagerProduct.products.filter(
-        (card) => card.id === Number(id)
-        );
-        console.log(addProduct);
-        cardData.add({ ...addProduct[0], quantity: 1 });
-        console.log("addProduct", cardData.carts);
-      });
+        (card) => card.id === id
+      );
+      console.log(addProduct);
+      cardData.add({ ...addProduct[0], quantity: 1 });
+      console.log("addProduct", cardData.carts);
     });
-  };
-   // router View card
-  const cardData = new CardManger();
-    document
-    .querySelector("#btn-card")
-    .addEventListener("click", () => {
-      rootHtml.innerHTML = router("/card", cardData);
-      window.history.pushState({}, null, `/card`);
-      deleteCard()
-       checkout()
-    });
-
-    const deleteCard = () => {
-      const del = document.querySelectorAll(".delete_card");
-      del.forEach((e) => {
-        e.addEventListener("click", () => {
-          const id = e.getAttribute("data-id");
-         console.log(cardData.carts)
-       const dels = cardData.remove(Number(id));
-          console.log(dels);
-          //render card
-          rootHtml.innerHTML = router('/card' , cardData)
-          window.history.pushState({} , null , '/card')
-          
-        });
-      });
+  });
 };
- function checkout () {
-    document.querySelector('.checkout-btn').addEventListener('click' , function () {
-    
-    })
- }
+// router View card
+const cardData = new CardManger();
+document.querySelector("#btn-card").addEventListener("click", () => {
+  rootHtml.innerHTML = router("/card", cardData);
+  window.history.pushState({}, null, `/card`);
+  deleteCard();
+  checkout();
+});
 
+const deleteCard = () => {
+  const del = document.querySelectorAll(".delete_card");
+  del.forEach((e) => {
+    e.addEventListener("click", () => {
+      const id = e.getAttribute("data-id");
+      console.log(cardData.carts);
+      const dels = cardData.remove(id);
+      console.log(dels);
+      //render card
+      rootHtml.innerHTML = router("/card", cardData);
+      window.history.pushState({}, null, "/card");
+    });
+  });
+};
+function checkout() {
+  document
+    .querySelector(".checkout-btn")
+    .addEventListener("click", function (e) {
+      console.log(cardData.carts);
+      rootHtml.innerHTML = router("/checkout", cardData);
+      handleCheckout();
+    });
+}
+function handleCheckout() {
+  const checkout = document.querySelector(".btn-buy");
+  const TypeName = document.getElementById("typeName");
+  const TypeNumber = document.getElementById("typeText");
+  const TypeExt = document.getElementById("typeExp");
+  checkout.addEventListener("click", (e) => {
+    e.preventDefault();
+    const formData = {
+      Number: TypeNumber.value,
+      NameCard: TypeName.value,
+      DateBuy: TypeExt.value,
+      products: cardData.carts,
+      TimeOrder: new Date(),
+      code: new Date().getTime(),
+    };
+    console.log(TypeNumber.value);
+    console.log(TypeName.value);
+    console.log(TypeExt.value);
+    const options = {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch("http://localhost:3000/checkout", options).then((res) => {
+      res.json();
+      window.location.reload();
+    });
+  });
+}
+
+// checking
+const fetchCheckout = async () => {
+  const data = ManagerCheckout.getcheckout();
+  console.log(ManagerCheckout.checkout);
+};
+fetchCheckout();
+const btnTracking = document.querySelector("#btn-tracking");
+btnTracking.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log(ManagerCheckout.getcheckout());
+  const dataCheckout = ManagerCheckout.checkout;
+  rootHtml.innerHTML = router("/tracking", dataCheckout);
+  const CodeSearch = document.querySelector("#code-search");
+  document.querySelector("#checkout_btn").addEventListener("click", () => {
+    console.log(CodeSearch.value);
+    if (CodeSearch) {
+      const checking = dataCheckout.filter(
+        (data) => data.code === Number(CodeSearch.value)
+      );
+      console.log(checking);
+      const item = checking.map((e) => {
+        const viewProduct =e.products.map((e) => {
+               return `
+               
+ <li> Tiêu đề :${e.title} </li>
+ <li> Nội dung :${e.description} </li>
+ <li> Gia :${e.price} </li>
+               `
+            })
+        return `
+          <div> 
+         <h2> ket qua tìm kiếm </h2> 
+          <ul>
+          <h4> Thông tin người dùng </h4>
+ <li> Number :${e.Number} </li>
+ <li> NameCard :${e.NameCard} </li>
+ <li> Thời gian Mua:${e.TimeOrder} </li>
+ 
+ </ul>
+ <ul>
+
+ <h4> Thông tin sản phẩm </h4>
+  
+  ${viewProduct.join('')}
+ </ul>
+          </div> 
+          `;
+      });
+      const nav = document.querySelector(".TrackingView");
+      nav.insertAdjacentHTML("beforeend", item.join(""));
+    }
+  });
+});

@@ -15,28 +15,9 @@ class CardItem {
 class CardManger {
   carts;
   constructor() {
-    this.carts = [
-      {
-        id: 12334,
-        price: 20,
-        quantity: 4,
-        thumb : "https://tse4.mm.bing.net/th?id=OIF.HbVSUFEH6CBdv5XlHHmiEA&pid=Api&P=0",
-        title : "Samsung F8",
-      },
-      {
-        id: 2,
-        price: 12,
-        quantity: 2,
-        thumb : "https://www.apple.com/v/iphone-14/d/images/overview/safety/crash_detection__erw0nogstc4m_large.jpg",
-         title : "Iphone 14"
-      }
-    ];
+    this.carts = [];
   }
   add(item) {
-    /* check Card 
-         if card item => kt ton tai chua co => them item 
-          if card co  => update lai card
-         */
     if (this.carts.length) {
       // kt
       const vt = this.carts.findIndex((card) => card.id === item.id);

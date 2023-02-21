@@ -18,3 +18,6 @@ export const fetchProduct = async (url, method) => {
 export const fetchUser = async (url, method) => {
   return await apiProvider(url, method);
 };
+export const fetchCheckout = async (url, method) => {
+  return await apiProvider(url, "GET");
+};
