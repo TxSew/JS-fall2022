@@ -21,3 +21,7 @@ export const fetchUser = async (url, method) => {
 export const fetchCheckout = async (url, method) => {
   return await apiProvider(url, "GET");
 };
+ 
+ export const fetchCategory = async (url, method) => {
+   return await apiProvider(url , "GET")
+ }

@@ -1,23 +1,16 @@
 //  *  array quản lý post
 //  */
-import { getAll, searchProduct , postData  } from "./services/productServices.js";
+import { getAll   } from "./services/categoryServices.js";
 
  const USER_PRODUCT ="user_product"
-class ManagerProduct {
-  constructor(products) {
-    this.products = products;
+class ManagerCategory {
+  constructor(category) {
+    this.category = category;
   }
   static async getAll() {
     const data = await getAll();
-    this.products = data;
+    this.category = data;
   }
-  static async searchProduct(keyword) {
-    const data = await searchProduct({
-      title_like: keyword,
-    });
-    this.products = data;
-  }
-
   // tạo trường tạo Course
   static async create(title, thumbnail , description,price) {
     console.log("isProduct , is call");
@@ -38,4 +31,4 @@ class ManagerProduct {
   // }
 }
 
-export default ManagerProduct;
+export default ManagerCategory;

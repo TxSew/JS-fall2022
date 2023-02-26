@@ -15,7 +15,10 @@
 
   <body class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">HOME</a>
+      <a class="navbar-brand" href="/">
+        <img style="width: 150px;" src="https://vnshop.vn/vnshop/logo_full_desktop.png" alt="">
+
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -30,15 +33,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <div class="menu-left">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Blogs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
+           
+          
+          
           </div>
           <div class="menu-right">
             <li class="nav-item">
@@ -48,13 +45,11 @@
               <a id="btn-register" class="nav-link" href="#">Register</a>
             </li>
             <li class="nav-item">
-              <a id="btn-card" class="nav-link" href="#">Card</a>
+              <a id="btn-card" class="nav-link" href="#">Giỏ hàng</a>
             </li>
+          
 <li class="nav-item">
-              <a id="btn-order" class="nav-link" href="#">Lịch sử đơn hàng</a>
-            </li>
-<li class="nav-item">
-              <a id="btn-tracking" class="nav-link" href="#">Tracking</a>
+              <a id="btn-tracking" class="nav-link" href="#">Tra cứu</a>
             </li>
 
           </div>
@@ -73,19 +68,42 @@
           />
           <div class="search_modal hide"></div>
         </div>
-         <div class="create_btn">
-        <button>Create</button>
-       </div>
-        <select name="" id="">
-          <option value="">sắp xếp</option>
-          <option value="tang">A-Z</option>
-          <option value="giam">Z-A</option>
+        <select name="" id="categories" style="background-color: gray; border: 2px solid black;">
+          <option value="sort">Sort By</option>
+          <option value="iphone">Iphone</option>
+          <option value="samsung">Samsung</option>
+          <option value="nokia">Nokia</option>
         </select>
+        <!-- <div class="create_btn">
+       <button>Create</button>
+      </div> -->
+      </div>
+       <div>
+
+         <!-- <h3 style="text-align: center;">Category</h3> -->
+        <div class="categories" style="display: flex; justify-content: center; gap:40px; margin-top: 30px;">
+          <div class="categories_item" style="width: 150px; border: 3px solid rgb(182, 179, 179); padding: 10px; border-radius: 10px;">
+            <img style="width: 150px; height: 200px; margin-bottom: 6px;" src="https://m.media-amazon.com/images/I/71WoWLO6+gL._AC_UY327_FMwebp_QL65_.jpg" alt="">
+            <p style="text-align: center; font-weight: 700;">Iphone</p>
+
+          </div>
+ <div class="categories_items" style="width: 150px; border: 3px solid rgb(185, 183, 183); padding: 10px; border-radius: 10px;">
+            <img style="width: 200px; height: 200px; margin-bottom: 6px;" src="https://m.media-amazon.com/images/I/61C-toZ-q1L._AC_UY327_QL65_.jpg" alt="">
+            <p style="text-align: center; font-weight: 700;">Samsung</p>
+
+          </div>
+<div class="categories_nokia" style="width: 150px; border: 3px solid rgb(177, 176, 176); padding: 10px; border-radius: 10px;">
+            <img style="width: 200px; height: 200px; margin-bottom: 6px;" src="https://m.media-amazon.com/images/I/61fSnahBPCS._AC_UY327_FMwebp_QL65_.jpg" alt="">
+            <p style="text-align: center; font-weight: 700;">nokia</p>
+
+          </div>
+        </div>
       </div>
       <div class="loading">
         <div id="loading-spiner" class="text-primary" role="status"></div>
       </div>
-
+      
+      <h3 style="text-align: center; margin-top: 50px;">Mobile Store</h3>
       <div id="items" class="row"></div>
       <div class="btn-page mt-3 text-center">
         <button class="btn-1 prevBtn"><</button>

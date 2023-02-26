@@ -7,13 +7,18 @@ const viewRegister = () => {
             <input type="text" class="form-control" id="username">
         </div>
         <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" class="form-control" id="Name">
+                </div>
+        <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email">
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password">
-        </div>
+
         <p style="color:red" id="errors"></p>
         <button id="btn-register-submit" type="button" class="btn btn-primary">Register</button>
     </form>`;
@@ -91,8 +96,8 @@ const viewDetail = (detail) => {
       </div>
       <div id="items" class="row">
         <div class="col-sm-12">
-          <div class="card shadow-sm">
-            <img class="thumbnail" style="height:450px" src="${detail.image}"/>
+          <div class="card shadow-sm" style="display:flex">
+            <img class="thumbnail" style="height:450px" src="${detail.thumbnail}"/>
             <div class="card-body">
              <h3>${detail.title}</h3>
               <p class="card-text">
@@ -102,10 +107,11 @@ const viewDetail = (detail) => {
                $${detail.price}
                 <div class="btn-group">
                    
-                 <button class="backHome"> Quay lại </button>
+                <button data-id="${detail.id}" class="btnCard" style="background:green; padding:3px 10px; border-radius:4px; margin-right:20px"> Mua </button>
+                 <button class="backHome" style="border-radius:5px; background:black; color:white; padding:2px 10px"> Quay lại </button>
                 </div>
                 <small class="text-muted">9 mins</small>
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -132,7 +138,13 @@ const viewLogin = () => {
     </form>
     `;
 };
-viewCreatePost = () => {
+viewCreatePost = (data) => {
+  console.log(data);
+  const html = data.map((e) => {
+    return `
+       <option value="${e.name}">${e.name}</option>
+       `;
+  });
   return `
     <form>
     <h3 class="heading_Post">Create Post </h3>
@@ -145,9 +157,17 @@ viewCreatePost = () => {
       <input type="text" class="form-control" id="password">
     </div>
  <div class="form-group">
-      <label for="password">Description:</label>
+      <label for="description">Description:</label>
       <input type="text" class="form-control" id="description">
     </div>
+<div class="form-group">
+      <label for="price">Price:</label>
+      <input type="text" class="form-control" id="price">
+    </div>
+
+    <select name="" id="categories">
+    ${html.join("")}
+           </select> 
     <p style="color:red" id="errors"></p>
     <button id="btn-login-submit" type="button" class="btn btn-primary">Save</button>
     </form>
@@ -163,14 +183,29 @@ updatePost = (update) => {
     </div>
     <div class="form-group">
       <label for="password">thumbnail:</label>
-      <input type="text" class="form-control" id="password" value="${update.image} ">
+      <input type="text" class="form-control" id="password" value="${update.thumbnail} ">
 
     </div>
+    <div class="form-group">
+      <label for="price">price:</label>
+      <input type="text" class="form-control" id="price" value="${update.price} ">
+
+    </div>
+
  <div class="form-group">
       <label for="password">Description:</label>
       <textarea  name="w3review" rows="4" cols="50" id="description">
        ${update.description}
 </textarea>
+    </div>
+ <div class="form-group">
+<select name="" id="categories">
+        <option value="">Chọn danh mục </option>
+        <option value="iphone">iphone</option>
+        <option value="samsung">samsung</option>
+        <option value="nokia">nokia</option>
+    </select> 
+  
     </div>
     <p style="color:red" id="errors"></p>
     <button id="btn-login-submit" type="button" class="btn btn-primary">Save</button>
@@ -194,13 +229,20 @@ const viewAdmin = (item) => {
 const viewCard = (card) => {
   //  const total = card.getTotal()
   console.log(card);
+   const UserName = JSON.parse(localStorage.getItem('user'))
+   let name = ""
+    if(UserName) {
+name = UserName.name
+    } else {
+       name = "player"
+    }
   const html = card.carts.map((e) => {
     return `
              <div class="card shadow-0 border mb-4">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-2">
-                    <img style="height:200px; width: 300px" src="${e.image}"
+                    <img style="height:200px; width: 300px" src="${e.thumbnail}"
                       class="img-fluid" alt="Phone">
                   </div>
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
@@ -217,13 +259,13 @@ const viewCard = (card) => {
                     <p class="text-muted mb-0 small">$${
                       e.price * e.quantity
                     }</p>
-                  </div>
+                    </div>
+                    
+                       <div class="col-md-2 text-center f-flex justify-content-center"> <button class="delete_card mt-10" data-id="${
+                         e.id
+                       }" > remove </button> </div>
+                       </div>
                 </div>
-                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                 <div class="col-md-2 text-center f-flex justify-content-center"> <button class="delete_card" data-id="${
-                   e.id
-                 }" > remove </button> </div>
-                 </div>
                 </div>
               </div>
             </div>
@@ -232,18 +274,17 @@ const viewCard = (card) => {
   return `
    <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-10 col-xl-8">
+    <div class="  justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-12">
         <div class="card" style="border-radius: 10px;">
           <div class="card-header px-4 py-5">
-            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">Anna</span>!</h5>
+            <h5 class="text-muted mb-0">Cảm ơn vì bạn đặt hàng !, <span style="color: #a8729a;">${name}</span></h5>
           </div>
-          ${html.join("")}  
+          ${html.join("") || `<spa style="text-align:center ; font-weight:bold; font-size:20px"> Chưa có sản phẩm trong giỏ hàng !</spa>`}  
                               <div class="card-footer border-0 px-4 py-5"
             style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-             <div class="checkout-btn bold" style="font-weight: bold ; color : #fff ; border : 1px solid gray; display: inline; text-center padding : 2px 10px">checkout</div>
-            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
-              paid: <span class="h2 mb-0 ms-2"> $${card.getTotal()}</span></h5>
+             <div class="checkout-btn bold" style="font-weight: bold ; color : #fff ;cursor:pointer ">Thanh Toán</div>
+            <h5 class="d-flex align-items-center justify-content-end text-white mb-0">Tổng tiền:  <span class="h5 mb-0 ms-2"> $${card.getTotal()}</span></h5>
           </div>
         </div>
       </div>
@@ -252,12 +293,12 @@ const viewCard = (card) => {
 </section>
 `;
 };
- const viewCheckout = (checkout) => {
-    const html =checkout.carts.map((e) => {
-     return `
+const viewCheckout = (checkout) => {
+  const html = checkout.carts.map((e) => {
+    return `
      <div class="d-flex align-items-center mb-5">
                   <div class="flex-shrink-0">
-                    <img src="${e.image}"
+                    <img src="${e.thumbnail}"
                       class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
                   </div>
                   <div class="flex-grow-1 ms-3">
@@ -277,9 +318,9 @@ const viewCard = (card) => {
                     </div>
                   </div>
                 </div>
-     `
-   })
-   return `
+     `;
+  });
+  return `
     
 <section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container h-100 py-5">
@@ -292,7 +333,7 @@ const viewCard = (card) => {
               <div class="col-lg-6 px-5 py-4">
 
                 <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
-     ${html.join('')}
+     ${html.join("")}
                <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
 
                 <div class="d-flex justify-content-between px-x">
@@ -358,20 +399,226 @@ const viewCard = (card) => {
     </div>
   </div>
 </section>
-   `
- }
-  const tracKing = () => {
-    return `
+   `;
+};
+const tracKing = () => {
+  return `
           <div>
         
          <h3>Tìm kiếm đơn hàng của bạn </h3> 
-         <input type="text" placeholder="Nhập mã code..." id="code-search"/>
+         <input type="text" placeholder="Nhập Mã Đơn Hàng..." id="code-search"/>
           <button id="checkout_btn">Tìm kiếm </button>
            <div class="TrackingView"> </div>
           </div>
-    ` 
+    `;
+};
+const dashboard = (data, category ,checkout) => {
+  console.log(data.length);
+   console.log(category)
+   console.log('e',checkout)
+  const categories = category.length;
+  const checkouts = checkout.length;
+  return `
+  <div class="dashboard">
+   <div className="link-admin">
+     <ul class="link_adminBtn">
+     <li><a href="">DashBoard</a></li>
+     <li><a  class="productAdmin" href="">List Product</a></li>
+     <li><a href="">List Categories</a></li>
+     <li><a href="" class="adminOrder">List Order</a></li>
+     </ul>
+   </div>
+    <div class="row box_dashboard">
+    <div class="col-md-3">
+    <span>${data.length}</span>
+     <br>
+      <span>product</span> 
+    </div> 
+    <div class="col-md-3">
+    <span>${categories}</span>
+      <span>Categories</span> 
+    </div> 
+
+    <div class="col-md-3">
+      <span>cart</span> 
+    </div> 
+
+    <div class="col-md-3">
+
+    <span>${checkouts}</span>
+      <span>order</span> 
+    </div> 
+    </div> 
+  </div>
+     `;
+};
+const AdminProduct = (data) => {
+  const html = data.map((e) => {
+    return `
+      
+       <tr>
+      <td>
+      <img style="width:200px; height:200px" src="${e.thumbnail}" alt="" /> 
+      </td> 
+
+      <td style="width:400px">
+      <p>${e.title}</p>
+      </td> 
+
+      <td style="width:300px">
+      <p >${e.price}</p>
+      </td> 
+
+      <td style="width:300px">
+      <p >${e.categories}</p>
+      </td> 
+      <td>
+ <button data-id="${e.id}" class="btn-delete" style="background:red;; padding:3px 10px; border-radius:2px"> Delete </button>
+  <button data-id="${e.id}" class="btn_updateCOde"  style="background:blue;  padding:3px 10px; border-radius:2px"> Edit </button>
+ 
+      </td>
+       </tr>
+       
+       
+       `;
+  });
+  return `
+   <div className="adminBoxAdmin">
+        <div class="create_btn">
+          <button>Create</button>
+      </div>
+ <div class="create_btn backAdmin">
+          <button>Back</button>
+      </div>
+   <table>
+  <thead>
+    <tr>
+      <th>THUMBNAIL</th>
+      <th>NAME</th>
+      <th>PRICE</th>
+      <th>CATEGORY</th>
+      <th>ACTION</th>
+    </tr>
+  </thead>
+   <tbody>
+    ${html.join("")}
+   </tbody>  
+     
+   </table> 
+   </div> 
+   `;
+};
+const HistoryOrder = (data) => {
+   
+const thumbnail = data.map((e,i) => {
+ return `
+   
+   <div class="historyUser"> 
+          <ul style="display:flex; gap:20px">
+          <li>${i+1} </li>
+ <li>  ${e.Number} </li>
+ <li> ${e.NameCard} </li>
+ <li> ${e.TimeOrder} </li>
+ <li> ${e.products.length} </li>
+
+ <li> ${e.status} </li>
+ <li>${e.code}</li>
+ 
+ </ul>
+ <ul>
+
+  
+ </ul>
+          </div>
+   `;
+})
+
+ if(data.length >=1) {
+return `
+<div class="historyUser"> 
+          <ul style="display:flex; gap:20px; font-weight:bold">
+          <li>STT </li>
+ <li> Số điện thoại</li>
+ <li> Họ Tên</li>
+ <li> Thời gian mua hàng </li>
+ <li> Số lượng sản phẩm </li>
+ <li> Trạng thái</li>
+ <li>Mã đơn hàng</li>
+ 
+ </ul>
+ ${thumbnail.join('')}
+ <ul>
+
+  
+ </ul>
+          </div>
+
+`
   }
-export const router = (path = "/", data = {}) => {
+  else {
+    return `
+    <p>chua co san pham</p>
+    `
+  }
+};
+const adminOrder = (data) => {
+const thumbnail = data.map((e,i) => {
+ return `
+   
+   <div class="historyUser"> 
+          <ul style="display:flex; gap:20px">
+          <li>${i+1} </li>
+ <li>  ${e.Number} </li>
+ <li> ${e.NameCard} </li>
+ <li> ${e.TimeOrder} </li>
+ <li> ${e.products.length} </li>
+
+ <li class="statusOrder"> ${e.status}
+ 
+ </li>
+ <li>
+ <button data-id="${e.id}" class="pending_order" style="background:blue;; padding:3px 10px; border-radius:2px"> Giao </button>
+ <button data-id="${e.id}" class="success_order"  style="background:green;  padding:3px 10px; border-radius:2px"> Đã Giao </button>
+ <button data-id="${e.id}" class="cancel_order"  style="background:red;  padding:3px 30px; border-radius:2px"> Hủy </button>
+ 
+ </li>
+ <li>${e.code}</li>
+ </ul>
+ <ul>
+ </ul>
+          </div>
+   `;
+})
+
+ if(data.length >=1) {
+return `
+<div class="historyUser"> 
+          <ul style="display:flex; gap:20px; font-weight:bold">
+          <li>STT </li>
+ <li> Số điện thoại</li>
+ <li> Họ Tên</li>
+ <li> Thời gian mua hàng </li>
+ <li> Số lượng sản phẩm </li>
+ <li> Trạng thái</li>
+
+ <li> Cập Nhật</li>
+ <li>Mã đơn hàng</li>
+ </ul>
+ ${thumbnail.join('')}
+ <ul>
+ </ul>
+          </div>
+`
+  }
+  else {
+    return `
+    <p>chua co san pham</p>
+    `
+  }
+};
+
+
+export const router = (path = "/", data = {}, data2 = {}, data3 = {}) => {
   switch (path) {
     case "/":
       return viewHome(data);
@@ -391,8 +638,17 @@ export const router = (path = "/", data = {}) => {
       return viewCard(data);
     case "/checkout":
       return viewCheckout(data);
-  case "/tracking":
-    return tracKing(data)
+    case "/tracking":
+      return tracKing(data);
+    case "/dashboard":
+      return dashboard(data, data2, data3);
+    //case admin
+    case "/adminProduct":
+      return AdminProduct(data);
+    case "/adminHistory":
+      return HistoryOrder(data);
+    case "/adminOrder":
+      return adminOrder(data);
     default:
       return view404();
   }
