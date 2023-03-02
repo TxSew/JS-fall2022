@@ -24,8 +24,7 @@ class ManagerCategory {
   }
   static saveProductData(data) {
     localStorage.setItem(USER_PRODUCT, JSON.stringify(data));
-  }
- 
+  } 
   // static register = (product) => {
   //   this.products.push(product);
   // }

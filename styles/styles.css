@@ -28,7 +28,8 @@ li {
   margin: 10px;
   position: relative;
 }
-.items_box ,.price_search{
+.items_box,
+.price_search {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -90,9 +91,9 @@ textarea {
   color: gray;
 }
 form {
-   max-width: 500px;
-    margin: 50px auto;
-     border-radius: 20px;
+  max-width: 500px;
+  margin: 50px auto;
+  border-radius: 20px;
   padding: 30px 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -225,10 +226,10 @@ select {
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
-   display: flex;
-    align-items: center;
-     justify-content: center;
-      flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   border: 3px solid gray;
 }
@@ -277,23 +278,24 @@ select {
   padding: 4px 20px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
-   text-align: center;
+  text-align: center;
 }
 .hidden {
-   display: none;
+  display: none;
 }
- .historyUser {
+.historyUser {
   margin-top: 10px;
- }
- .historyUser > ul{
-   border: 1px solid #000;
-    
- }
-  .historyUser > ul > li {
-     width: 200px;
-      text-align: center;
-  
-      border-right: 1px solid gray;
-  }
+}
+.historyUser > ul {
+  border: 1px solid #000;
+}
+.historyUser > ul > li {
+  width: 200px;
+  text-align: center;
+
+  border-right: 1px solid gray;
+}

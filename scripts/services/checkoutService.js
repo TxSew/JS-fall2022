@@ -1,4 +1,4 @@
-import { fetchCheckout} from "../api/index.js";
+import { fetchCheckout } from "../api/index.js";
 /**
  * getAll
  * getDetail
@@ -10,4 +10,3 @@ import { fetchCheckout} from "../api/index.js";
 export const getcheckout = async () => {
   return await fetchCheckout("checkout");
 };
-

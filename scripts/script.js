@@ -72,7 +72,6 @@ const printHtml = (data) => {
   );
   handleAddCard();
 };
-
 // quay laji trang chu tu trang chi tiet san pham
 const backHomeDetail = () => {
   document.querySelector(".backHome").addEventListener("click", () => {
@@ -217,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-
 const btn = document.querySelector("#btn-login");
 if (btn) {
   btn.addEventListener("click", () => {
@@ -750,7 +748,7 @@ fetchDashBoard();
 const fetchOrderAdmin = () => {
   document.querySelector(".adminOrder").addEventListener("click", (e) => {
     e.preventDefault();
-    const dataCheckout = ManagerCheckout.checkout
+    const dataCheckout = ManagerCheckout.checkout;
     document.querySelector("body").innerHTML = router(
       "/adminOrder",
       dataCheckout
@@ -764,38 +762,35 @@ const handleAdminOrder = () => {
   const success = document.querySelectorAll(".success_order");
   const pending = document.querySelectorAll(".pending_order");
   const cancel = document.querySelectorAll(".cancel_order");
-pending.forEach((e) => {
+  pending.forEach((e) => {
     const id = e.getAttribute("data-id");
     e.addEventListener("click", () => {
       const dataOrder = ManagerCheckout.checkout.filter((e) => {
         return e.id == id;
       });
-       console.log(dataOrder)
+      console.log(dataOrder);
       const options = {
         method: "PUT",
         body: JSON.stringify({
-           id: dataOrder[0].id,
-          status:"đang giao",
-          Number :dataOrder[0].Number,
-          TimeOrder :dataOrder[0].TimeOrder,
-          NameCard :dataOrder[0].NameCard,
-          DateBuy :dataOrder[0].DateBuy,
-          UserId :dataOrder[0].UserId,
-          products :dataOrder[0].products,
-          code :dataOrder[0].code,
-
-
-
+          id: dataOrder[0].id,
+          status: "đang giao",
+          Number: dataOrder[0].Number,
+          TimeOrder: dataOrder[0].TimeOrder,
+          NameCard: dataOrder[0].NameCard,
+          DateBuy: dataOrder[0].DateBuy,
+          UserId: dataOrder[0].UserId,
+          products: dataOrder[0].products,
+          code: dataOrder[0].code,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       };
-      fetch("http://localhost:3000/checkout" + "/" + id , options)
-      .then((res) =>{
-        res.json()
-
-      })
+      fetch("http://localhost:3000/checkout" + "/" + id, options).then(
+        (res) => {
+          res.json();
+        }
+      );
       //xu ly
     });
   });
@@ -805,67 +800,62 @@ pending.forEach((e) => {
       const dataOrder = ManagerCheckout.checkout.filter((e) => {
         return e.id == id;
       });
-       console.log(dataOrder)
+      console.log(dataOrder);
       const options = {
         method: "PUT",
         body: JSON.stringify({
-           id: dataOrder[0].id,
-          status:"đã nhận hàng",
-          Number :dataOrder[0].Number,
-          TimeOrder :dataOrder[0].TimeOrder,
-          NameCard :dataOrder[0].NameCard,
-          DateBuy :dataOrder[0].DateBuy,
-          UserId :dataOrder[0].UserId,
-          products :dataOrder[0].products,
-          code :dataOrder[0].code,
-
-
-
+          id: dataOrder[0].id,
+          status: "đã nhận hàng",
+          Number: dataOrder[0].Number,
+          TimeOrder: dataOrder[0].TimeOrder,
+          NameCard: dataOrder[0].NameCard,
+          DateBuy: dataOrder[0].DateBuy,
+          UserId: dataOrder[0].UserId,
+          products: dataOrder[0].products,
+          code: dataOrder[0].code,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       };
-      fetch("http://localhost:3000/checkout" + "/" + id , options)
-      .then((res) =>{
-        res.json()
-     window.location.reload()
- 
-      })
+      fetch("http://localhost:3000/checkout" + "/" + id, options).then(
+        (res) => {
+          res.json();
+          window.location.reload();
+        }
+      );
       //xu ly
     });
   });
-cancel.forEach((e) => {
+  cancel.forEach((e) => {
     const id = e.getAttribute("data-id");
     e.addEventListener("click", () => {
       const dataOrder = ManagerCheckout.checkout.filter((e) => {
         return e.id == id;
       });
-       console.log(dataOrder)
+      console.log(dataOrder);
       const options = {
         method: "PUT",
         body: JSON.stringify({
-           id: dataOrder[0].id,
-          status:"bị hủy",
-          Number :dataOrder[0].Number,
-          TimeOrder :dataOrder[0].TimeOrder,
-          NameCard :dataOrder[0].NameCard,
-          DateBuy :dataOrder[0].DateBuy,
-          UserId :dataOrder[0].UserId,
-          products :dataOrder[0].products,
-          code :dataOrder[0].code,
-
-
-
+          id: dataOrder[0].id,
+          status: "bị hủy",
+          Number: dataOrder[0].Number,
+          TimeOrder: dataOrder[0].TimeOrder,
+          NameCard: dataOrder[0].NameCard,
+          DateBuy: dataOrder[0].DateBuy,
+          UserId: dataOrder[0].UserId,
+          products: dataOrder[0].products,
+          code: dataOrder[0].code,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       };
-      fetch("http://localhost:3000/checkout" + "/" + id , options)
-      .then((res) =>{
-        res.json()
-      })
+      fetch("http://localhost:3000/checkout" + "/" + id, options).then(
+        (res) => {
+          res.json();
+        }
+      );
       //xu ly
     });
   });
