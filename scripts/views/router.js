@@ -23,6 +23,7 @@ const viewRegister = () => {
         <button id="btn-register-submit" type="button" class="btn btn-primary">Register</button>
     </form>`;
 };
+// View Home Page
 const viewHome = (data) => {
   return `
     <div class="row">
@@ -41,7 +42,6 @@ const viewHome = (data) => {
   <div class="loading">
     <div id="loading-spiner" class="text-primary" role="status"></div>
   </div>
-
   <div id="items" class="row">
     <div class="col-md-3 col-sm-12">
       <div class="card shadow-sm">
@@ -88,7 +88,6 @@ const viewHome = (data) => {
   </div>
     `;
 };
-
 const viewDetail = (detail) => {
   return `<div>
       <div class="loading">
@@ -121,6 +120,7 @@ const viewDetail = (detail) => {
 const view404 = () => {
   return `<div></h1>page not found </h1></div>`;
 };
+// View Login
 const viewLogin = () => {
   return `
     <form>
@@ -138,6 +138,7 @@ const viewLogin = () => {
     </form>
     `;
 };
+ // form create Post
 viewCreatePost = (data) => {
   console.log(data);
   const html = data.map((e) => {
@@ -173,6 +174,7 @@ viewCreatePost = (data) => {
     </form>
    `;
 };
+ //router Update
 updatePost = (update) => {
   return `
     <form>
@@ -229,13 +231,13 @@ const viewAdmin = (item) => {
 const viewCard = (card) => {
   //  const total = card.getTotal()
   console.log(card);
-   const UserName = JSON.parse(localStorage.getItem('user'))
-   let name = ""
-    if(UserName) {
-name = UserName.name
-    } else {
-       name = "player"
-    }
+  const UserName = JSON.parse(localStorage.getItem("user"));
+  let name = "";
+  if (UserName) {
+    name = UserName.name;
+  } else {
+    name = "player";
+  }
   const html = card.carts.map((e) => {
     return `
              <div class="card shadow-0 border mb-4">
@@ -248,7 +250,6 @@ name = UserName.name
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0">${e.title}</p>
                   </div>
-                  
                   <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0 small">Capacity: ${e.price} </p>
                   </div>
@@ -277,10 +278,13 @@ name = UserName.name
     <div class="  justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-12">
         <div class="card" style="border-radius: 10px;">
-          <div class="card-header px-4 py-5">
+            <div class="card-header px-4 py-5">
             <h5 class="text-muted mb-0">Cảm ơn vì bạn đặt hàng !, <span style="color: #a8729a;">${name}</span></h5>
           </div>
-          ${html.join("") || `<spa style="text-align:center ; font-weight:bold; font-size:20px"> Chưa có sản phẩm trong giỏ hàng !</spa>`}  
+          ${
+            html.join("") ||
+            `<spa style="text-align:center ; font-weight:bold; font-size:20px"> Chưa có sản phẩm trong giỏ hàng !</spa>`
+          }  
                               <div class="card-footer border-0 px-4 py-5"
             style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
              <div class="checkout-btn bold" style="font-weight: bold ; color : #fff ;cursor:pointer ">Thanh Toán</div>
@@ -412,10 +416,10 @@ const tracKing = () => {
           </div>
     `;
 };
-const dashboard = (data, category ,checkout) => {
+const dashboard = (data, category, checkout) => {
   console.log(data.length);
-   console.log(category)
-   console.log('e',checkout)
+  console.log(category);
+  console.log("e", checkout);
   const categories = category.length;
   const checkouts = checkout.length;
   return `
@@ -452,34 +456,28 @@ const dashboard = (data, category ,checkout) => {
   </div>
      `;
 };
+// Admin router Product
 const AdminProduct = (data) => {
   const html = data.map((e) => {
     return `
-      
        <tr>
       <td>
       <img style="width:200px; height:200px" src="${e.thumbnail}" alt="" /> 
       </td> 
-
       <td style="width:400px">
       <p>${e.title}</p>
       </td> 
-
       <td style="width:300px">
       <p >${e.price}</p>
       </td> 
-
       <td style="width:300px">
       <p >${e.categories}</p>
       </td> 
       <td>
  <button data-id="${e.id}" class="btn-delete" style="background:red;; padding:3px 10px; border-radius:2px"> Delete </button>
   <button data-id="${e.id}" class="btn_updateCOde"  style="background:blue;  padding:3px 10px; border-radius:2px"> Edit </button>
- 
       </td>
        </tr>
-       
-       
        `;
   });
   return `
@@ -509,13 +507,12 @@ const AdminProduct = (data) => {
    `;
 };
 const HistoryOrder = (data) => {
-   
-const thumbnail = data.map((e,i) => {
- return `
+  const thumbnail = data.map((e, i) => {
+    return `
    
    <div class="historyUser"> 
           <ul style="display:flex; gap:20px">
-          <li>${i+1} </li>
+          <li>${i + 1} </li>
  <li>  ${e.Number} </li>
  <li> ${e.NameCard} </li>
  <li> ${e.TimeOrder} </li>
@@ -531,10 +528,10 @@ const thumbnail = data.map((e,i) => {
  </ul>
           </div>
    `;
-})
+  });
 
- if(data.length >=1) {
-return `
+  if (data.length >= 1) {
+    return `
 <div class="historyUser"> 
           <ul style="display:flex; gap:20px; font-weight:bold">
           <li>STT </li>
@@ -546,40 +543,39 @@ return `
  <li>Mã đơn hàng</li>
  
  </ul>
- ${thumbnail.join('')}
+ ${thumbnail.join("")}
  <ul>
-
-  
  </ul>
           </div>
-
-`
-  }
-  else {
+`;
+  } else {
     return `
-    <p>chua co san pham</p>
-    `
+    <p style="font-weight:700; color:red">chưa có sản phẩm</p>
+    `;
   }
 };
 const adminOrder = (data) => {
-const thumbnail = data.map((e,i) => {
- return `
-   
+  const thumbnail = data.map((e, i) => {
+    return `
    <div class="historyUser"> 
           <ul style="display:flex; gap:20px">
-          <li>${i+1} </li>
+          <li>${i + 1} </li>
  <li>  ${e.Number} </li>
  <li> ${e.NameCard} </li>
  <li> ${e.TimeOrder} </li>
  <li> ${e.products.length} </li>
-
  <li class="statusOrder"> ${e.status}
- 
  </li>
  <li>
- <button data-id="${e.id}" class="pending_order" style="background:blue;; padding:3px 10px; border-radius:2px"> Giao </button>
- <button data-id="${e.id}" class="success_order"  style="background:green;  padding:3px 10px; border-radius:2px"> Đã Giao </button>
- <button data-id="${e.id}" class="cancel_order"  style="background:red;  padding:3px 30px; border-radius:2px"> Hủy </button>
+ <button data-id="${
+   e.id
+ }" class="pending_order" style="background:blue;; padding:3px 10px; border-radius:2px"> Giao </button>
+ <button data-id="${
+   e.id
+ }" class="success_order"  style="background:green;  padding:3px 10px; border-radius:2px"> Đã Giao </button>
+ <button data-id="${
+   e.id
+ }" class="cancel_order"  style="background:red;  padding:3px 30px; border-radius:2px"> Hủy </button>
  
  </li>
  <li>${e.code}</li>
@@ -588,10 +584,9 @@ const thumbnail = data.map((e,i) => {
  </ul>
           </div>
    `;
-})
-
- if(data.length >=1) {
-return `
+  });
+  if (data.length >= 1) {
+    return `
 <div class="historyUser"> 
           <ul style="display:flex; gap:20px; font-weight:bold">
           <li>STT </li>
@@ -604,19 +599,17 @@ return `
  <li> Cập Nhật</li>
  <li>Mã đơn hàng</li>
  </ul>
- ${thumbnail.join('')}
+ ${thumbnail.join("")}
  <ul>
  </ul>
           </div>
-`
-  }
-  else {
+`;
+  } else {
     return `
     <p>chua co san pham</p>
-    `
+    `;
   }
 };
-
 
 export const router = (path = "/", data = {}, data2 = {}, data3 = {}) => {
   switch (path) {
@@ -642,7 +635,7 @@ export const router = (path = "/", data = {}, data2 = {}, data3 = {}) => {
       return tracKing(data);
     case "/dashboard":
       return dashboard(data, data2, data3);
-    //case admin
+      // router Admin
     case "/adminProduct":
       return AdminProduct(data);
     case "/adminHistory":

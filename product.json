@@ -95,8 +95,8 @@
     {
       "username": "admin123a",
       "password": "123456",
-      "email": "minhacong912@gmail.com",
       "name": "do thanh",
+      "email": "minhacong912@gmail.com",
       "role": "user",
       "id": 4
     },

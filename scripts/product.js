@@ -8,5 +8,4 @@ class Product {
     this.category = category;
   }
 }
-
 export default Product;

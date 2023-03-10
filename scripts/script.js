@@ -21,13 +21,10 @@ const fetchDada = async () => {
   });
 };
 fetchDada();
-
-// const totalPage = Math.ceil(ManagerProduct.products.length /perPage)
 let currentPage = 1;
 let start = 0;
 let perPage = 8;
 let end = perPage;
-// console.log(totalPage)
 const printHtml = (data) => {
   const elPost = document.getElementById("items");
   const View = data.map((item, index) => {
@@ -81,8 +78,7 @@ const backHomeDetail = () => {
 // fetch NextBtn Page js
 const NextBtn = () => {
   document.querySelector(".nextBtn").addEventListener("click", () => {
-    currentPage++;
-
+    currentPage++
     start = (currentPage - 1) * perPage;
     end = currentPage * perPage;
     fetchDada();
@@ -118,7 +114,6 @@ if (inputSearch) {
   });
 }
 const rootHtml = document.querySelector("#root");
-// router("/");
 inputSearch.addEventListener("focus", () => {
   console.log("show input search");
   const searchModal = document.querySelector(".search_modal");
@@ -233,7 +228,6 @@ if (btnRegister) {
     xuLyRegister();
   });
 }
-
 const xuLyLogin = () => {
   const elUsername = document.getElementById("username");
   const elPassword = document.getElementById("password");
@@ -275,7 +269,7 @@ const xuLyLogin = () => {
     }
   });
 };
-
+//  Check isUserSer
 const checkUser = () => {
   const isLogin = ManagerUser.checkLogin();
   if (isLogin) {
@@ -334,7 +328,7 @@ const checkUser = () => {
 };
 
 checkUser(navigation);
-
+//handle logout
 const logout = () => {
   const el = document.querySelector(".nav_logout");
   console.log("el", el);
@@ -651,7 +645,6 @@ btnTracking.addEventListener("click", (e) => {
         const viewProduct = e.products.map((e) => {
           return `
           <div>  
-          
           <li> Tiêu đề :${e.title} </li>
           <li> Thumbnail :
           <img style="width:100px;height:100px" src="${e.thumbnail}" >
@@ -670,13 +663,10 @@ btnTracking.addEventListener("click", (e) => {
         <li> NameCard :${e.NameCard} </li>
         <li> Thời gian Mua:${e.TimeOrder} </li>
  <li> Trạng thái :${e.status} </li>
- 
  </ul>
  <ul>
- 
  <h4> Thông tin sản phẩm </h4>
  <div style="display:flex ; gap :30px; list-style:none">
- 
  ${viewProduct.join("")}
   </div> 
  </ul>
@@ -823,8 +813,10 @@ const handleAdminOrder = () => {
           res.json();
           window.location.reload();
         }
-      );
-      //xu ly
+      )
+      .catch (err)(
+       console.log(err)
+      )
     });
   });
   cancel.forEach((e) => {
@@ -856,7 +848,6 @@ const handleAdminOrder = () => {
           res.json();
         }
       );
-      //xu ly
     });
   });
 };

@@ -1,10 +1,7 @@
 //  *  array quản lý post
-//  */
 import { LoginUser } from "./services/userServices";
-
 const USER_KEY = "user";
 class ManagerUser {
-  // constructor(username, password) {}
   static async getAll() {
     const data = await getAll();
     this.users = data;
@@ -19,7 +16,7 @@ class ManagerUser {
     }
     return false;
   }
-  // tạo trường đăng ký
+  //create register form code
   static async register(username, password) {
     console.log("isLogin call");
     const data = await LoginUser(username, password);
@@ -30,6 +27,7 @@ class ManagerUser {
     }
     return false;
   }
+  //save data Register
   static saveUserData(data) {
     localStorage.setItem(USER_KEY, JSON.stringify(data));
   }
@@ -48,11 +46,11 @@ class ManagerUser {
     }
     return null;
   }
+  //logout
   static logout() {
     if (localStorage.getItem(USER_KEY)) {
       localStorage.removeItem(USER_KEY);
     }
   }
 }
-
 export default ManagerUser;
