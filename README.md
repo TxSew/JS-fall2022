@@ -1,9 +1,11 @@
 ## install
-
+npm install
+or
 npm install -g json-server
 
 ## run
-
+npm start 
+ or
 json-server --watch product.json
 
 ## document
